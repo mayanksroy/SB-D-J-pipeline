@@ -11,7 +11,7 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                git 'https://github.com/your-repo-url.git'
+                git 'https://github.com/mayanksroy/SB-D-J-pipeline'
             }
         }
         stage('Build') {
