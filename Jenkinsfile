@@ -11,7 +11,7 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                git branch:'master', URL:'https://github.com/mayanksroy/SB-D-J-pipeline'
+                git 'https://github.com/mayanksroy/SB-D-J-pipeline'
             }
         }
         stage('Build') {
