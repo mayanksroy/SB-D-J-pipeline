@@ -1,34 +1,15 @@
 pipeline {
-    agent {
-        docker {
-            image 'maven:3.9.6-eclipse-temurin-17'
-        }
-    }
-    environment {
-        IMAGE_NAME = 'springboot-jenkins-docker'
-        CONTAINER_NAME = 'springapp'
-    }
-    stages {
+    agent any
         stage('Checkout') {
             steps {
-                git 'https://github.com/mayanksroy/SB-D-J-pipeline'
+                git 'https://github.com/mayanksroy/SB-D-J-pipeline.git'
             }
         }
         stage('Build') {
             steps {
-                sh 'mvn clean package -DskipTests'
-            }
-        }
-        stage('Build Docker Image') {
-            steps {
-                sh 'docker build -t ${IMAGE_NAME} .'
-            }
-        }
-        stage('Run Docker Container') {
-            steps {
-                sh 'docker stop ${CONTAINER_NAME} || true'
-                sh 'docker rm ${CONTAINER_NAME} || true'
-                sh 'docker run -d --name ${CONTAINER_NAME} -p 6060:8080 ${IMAGE_NAME}'
+                dir('springboot-docker') {
+                    bat 'mvn clean package'
+                }
             }
         }
     }
