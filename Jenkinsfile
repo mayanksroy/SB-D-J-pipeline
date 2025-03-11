@@ -13,6 +13,10 @@
 pipeline {
     agent any
 
+    tools {
+        maven 'Maven3'  // Ensure 'Maven3' is configured in Jenkins Global Tool Configuration
+    }
+
     stages {
         stage('Checkout') {
             steps {
@@ -22,10 +26,8 @@ pipeline {
 
         stage('Build with Maven') {
             steps {
-                withMaven(maven: 'Maven3') {
-                bat 'mvn clean package -DskipTests'
+                bat 'mvn clean package -DskipTests'  // Ensure Maven is installed and configured in Jenkins
             }
         }
     }
 }
-
