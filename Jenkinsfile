@@ -1,17 +1,19 @@
 pipeline {
     agent any
-    stages{
+    stages {
         stage('Checkout') {
             steps {
                 git 'https://github.com/mayanksroy/SB-D-J-pipeline.git'
             }
         }
-        stage('Build') {
-            steps {
-                dir('springboot-docker') {
-                    bat 'mvn clean package'
-                }
-            }
-        }
-    }
+        // stage('Deploy') {
+        //     steps {
+        //         echo "Deploying application..."
+        //         sh '''
+        //             docker build -t myapp:latest .
+        //             docker run -d -p 8080:8080 myapp:latest
+        //         '''
+        //     }
+        // }
+    }
 }
