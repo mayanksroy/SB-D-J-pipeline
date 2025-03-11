@@ -22,6 +22,7 @@ pipeline {
 
         stage('Build with Maven') {
             steps {
+                withMaven(maven: 'Maven3') {
                 bat 'mvn clean package -DskipTests'
             }
         }
