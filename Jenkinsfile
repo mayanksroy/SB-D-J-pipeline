@@ -48,15 +48,6 @@ pipeline {
                 }
             }
         }
-
-        stage('Deploy in Docker') {
-            steps {
-                script {
-                    sh 'docker stop springboot-container || true'
-                    sh 'docker rm springboot-container || true'
-                    sh 'docker run -d -p 6060:8080 --name springboot-container $DOCKER_HUB_USER/$IMAGE_NAME:latest'
-                }
-            }
-        }
     }
 }
+
